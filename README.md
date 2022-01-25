@@ -9,7 +9,7 @@ number of items.
 
 Example usage:
 
-```
+```go
 import (
 	"errors"
 	"github.com/wormi4ok/cache"
