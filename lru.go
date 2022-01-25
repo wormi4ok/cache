@@ -27,6 +27,15 @@ func NewLRU(maxSize int) Cache {
 }
 
 func (c *LRU) Write(key string, value interface{}) {
+	if v, ok := c.cache[key]; ok {
+		c.keys.MoveToFront(v.key)
+		c.cache[key] = item{
+			key:   v.key,
+			value: value,
+		}
+
+		return
+	}
 	if len(c.cache) >= c.maxSize {
 		oldestKey := c.keys.Back()
 
